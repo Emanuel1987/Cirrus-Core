@@ -5,62 +5,62 @@ metadata:
   namespace: viya4
 data:
   LDAP_USERS_CONF: |-
-      dn: uid=viya_admin,ou=people,dc=viya,dc=com
-      changetype: add
-      objectClass: inetOrgPerson
-      objectclass: extensibleObject
-      uid: viya_admin
-      uidNumber: 7001
-      gidNumber: 1000
-      cn: administrator
-      sn: Admin
-      homeDirectory: /home/viya_admin
-      mail: viya_admin@example.com
-      distinguishedName: uid=viya_admin,ou=people,dc=viya,dc=com
-      displayName: Viya Administrator
-      userPassword: Password123   
+    dn: uid=viya_admin,ou=people,dc=viya,dc=com
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: viya_admin
+    uidNumber: 7001
+    gidNumber: 1000
+    cn: administrator
+    sn: Admin
+    homeDirectory: /home/viya_admin
+    mail: viya_admin@example.com
+    distinguishedName: uid=viya_admin,ou=people,dc=viya,dc=com
+    displayName: Viya Administrator
+    userPassword: Password123   
 
-      dn: uid=emanuel,ou=people,dc=viya,dc=com
-      changetype: add
-      objectClass: inetOrgPerson
-      objectclass: extensibleObject
-      uid: emanuel
-      uidNumber: 7001
-      gidNumber: 1000
-      cn: emanuel
-      sn: Emanuel Oliveira
-      homeDirectory: /home/emanuel
-      mail: emanuel.oliveira@sas.com
-      distinguishedName: uid=emanuel,ou=people,dc=viya,dc=com
-      displayName: Basic User 1
-      userPassword: Password123
+    dn: uid=emanuel,ou=people,dc=viya,dc=com
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: emanuel
+    uidNumber: 7001
+    gidNumber: 1000
+    cn: emanuel
+    sn: Emanuel Oliveira
+    homeDirectory: /home/emanuel
+    mail: emanuel.oliveira@sas.com
+    distinguishedName: uid=emanuel,ou=people,dc=viya,dc=com
+    displayName: Basic User 1
+    userPassword: Password123
 
-      dn: uid=willian,ou=people,dc=viya,dc=com
-      changetype: add
-      objectClass: inetOrgPerson
-      objectclass: extensibleObject
-      uid: willian
-      uidNumber: 7002
-      gidNumber: 1000
-      cn: willian
-      sn: Willian Rosa
-      homeDirectory: /home/willian
-      mail: willian.rosa@sas.com
-      distinguishedName: uid=willian,ou=people,dc=viya,dc=com
-      displayName: Basic User 2
-      userPassword: Password123
+    dn: uid=willian,ou=people,dc=viya,dc=com
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: willian
+    uidNumber: 7002
+    gidNumber: 1000
+    cn: willian
+    sn: Willian Rosa
+    homeDirectory: /home/willian
+    mail: willian.rosa@sas.com
+    distinguishedName: uid=willian,ou=people,dc=viya,dc=com
+    displayName: Basic User 2
+    userPassword: Password123
 
-      dn: cn=users,ou=groups,dc=viya,dc=com
-      changetype: add
-      objectclass: groupofUniqueNames
-      objectclass: extensibleObject
-      gidNumber: 1000
-      uniqueMember: uid=emanuel,ou=people,dc=viya,dc=com
-      uniqueMember: uid=willian,ou=people,dc=viya,dc=com
+    dn: cn=users,ou=groups,dc=viya,dc=com
+    changetype: add
+    objectclass: groupofUniqueNames
+    objectclass: extensibleObject
+    gidNumber: 1000
+    uniqueMember: uid=emanuel,ou=people,dc=viya,dc=com
+    uniqueMember: uid=willian,ou=people,dc=viya,dc=com
 
-      dn: cn=admins,ou=groups,dc=viya,dc=com
-      changetype: add
-      objectclass: groupofUniqueNames
-      objectclass: extensibleObject
-      gidNumber: 2000
-      uniqueMember: uid=viya_admin,ou=people,dc=viya,dc=com
+    dn: cn=admins,ou=groups,dc=viya,dc=com
+    changetype: add
+    objectclass: groupofUniqueNames
+    objectclass: extensibleObject
+    gidNumber: 2000
+    uniqueMember: uid=viya_admin,ou=people,dc=viya,dc=com
