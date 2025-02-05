@@ -1,26 +1,24 @@
----
-apiVersion: builtin
-kind: PatchTransformer
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: openldap-users
-patch: |-
-  - op: replace
-    path: /data/LDAP_USERS_CONF
-    value: |-
+  name: openldap-bootstrap-config
+  namespace: viya4
+data:
+  LDAP_USERS_CONF: |-
       dn: uid=viya_admin,ou=people,dc=viya,dc=com
       changetype: add
       objectClass: inetOrgPerson
       objectclass: extensibleObject
       uid: viya_admin
-      uidNumber: 2001
-      gidNumber: 2000
+      uidNumber: 7001
+      gidNumber: 1000
       cn: administrator
       sn: Admin
       homeDirectory: /home/viya_admin
       mail: viya_admin@example.com
       distinguishedName: uid=viya_admin,ou=people,dc=viya,dc=com
       displayName: Viya Administrator
-      userPassword: Password123
+      userPassword: Password123   
 
       dn: uid=emanuel,ou=people,dc=viya,dc=com
       changetype: add
@@ -29,8 +27,8 @@ patch: |-
       uid: emanuel
       uidNumber: 7001
       gidNumber: 1000
-      cn: Emanuel
-      sn: Oliveira
+      cn: emanuel
+      sn: Emanuel Oliveira
       homeDirectory: /home/emanuel
       mail: emanuel.oliveira@sas.com
       distinguishedName: uid=emanuel,ou=people,dc=viya,dc=com
@@ -44,8 +42,8 @@ patch: |-
       uid: willian
       uidNumber: 7002
       gidNumber: 1000
-      cn: Willian
-      sn: Rosa
+      cn: willian
+      sn: Willian Rosa
       homeDirectory: /home/willian
       mail: willian.rosa@sas.com
       distinguishedName: uid=willian,ou=people,dc=viya,dc=com
@@ -57,7 +55,6 @@ patch: |-
       objectclass: groupofUniqueNames
       objectclass: extensibleObject
       gidNumber: 1000
-      distinguishedName: cn=users,ou=groups,dc=viya,dc=com
       uniqueMember: uid=emanuel,ou=people,dc=viya,dc=com
       uniqueMember: uid=willian,ou=people,dc=viya,dc=com
 
@@ -66,8 +63,4 @@ patch: |-
       objectclass: groupofUniqueNames
       objectclass: extensibleObject
       gidNumber: 2000
-      distinguishedName: cn=admins,ou=groups,dc=viya,dc=com
       uniqueMember: uid=viya_admin,ou=people,dc=viya,dc=com
-target:
-  kind: ConfigMap
-  name: openldap-bootstrap-config
