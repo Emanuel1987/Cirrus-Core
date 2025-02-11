@@ -1,0 +1,71 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-rm-parameter-transform
+patch: |-
+
+  #Cirrus deployer environment variables
+  - op: replace
+    path: /data/SAS_LOG_LEVEL_RISKCIRRUSDEPLOYER
+    value: "INFO"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_DEPLOYER_INCLUDE_SAMPLES
+    value: "N"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_DEPLOYER_SKIP_SPECIFIC_INSTALL_STEPS
+    value: ""
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_DEPLOYER_RUN_SPECIFIC_INSTALL_STEPS
+    value: ""
+    
+  #Cirrus solution builder environment variables
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_BUILDER_REPO_PREFIX
+    value: "cirrus-rm"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_BUILDER_REPO_USER
+    value: "Emanuel1987"
+    
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_GIT_REPO_TYPE
+    value: "github"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_GIT_REPO_FULL_URL
+    value: "https://github.com/Emanuel1987/Cirrus-Core"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_BUILDER_SOLUTION_BRANCH_PREFIX
+    value: "DEV"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_APPEND_NAMESPACE_TO_BRANCH_FLG
+    value: "N"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_BUILDER_REPO_HOST
+    value: "github.com"
+
+target:
+  kind: ConfigMap
+  name: sas-risk-cirrus-rm-parameters*
+
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-rm-secret-transform
+patch: |-
+
+  #Cirrus solution builder secrets
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SOLUTION_BUILDER_REPO_TOKEN
+    value: "Z2hwX096MVNTdkd6TTBDNVJVYzdGVUtiOW12emF2em1YVjAzVjZGbg==" 
+
+target:
+  kind: Secret
+  name: sas-risk-cirrus-rm-secret*

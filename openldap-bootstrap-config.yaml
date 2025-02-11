@@ -1,0 +1,91 @@
+---
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: openldap-bootstrap-config
+literals:
+  - LDAP_TLS="false"
+  - LDAP_ADMIN_PASSWORD="{SSHA}7m5XDSU5dVquXLGx+J4GJMdxQ4euqfNU"
+  - LDAP_DOMAIN="viya.domain"
+  - LDAP_REMOVE_CONFIG_AFTER_SETUP="false"
+  - DISABLE_CHOWN="true"
+  - |-
+    LDAP_USERS_CONF=dn: uid=viya,ou=people,dc=viya,dc=domain
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: viya_admin
+    uidNumber: 2001
+    gidNumber: 2000
+    cn: administrator
+    sn: Admin
+    mail: viya@example.com
+    displayName: Viya Administrator
+    homeDirectory: /home/viya
+    userPassword: Password123
+    
+    dn: uid=emanuel,ou=people,dc=viya,dc=domain
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: user1
+    uidNumber: 7001
+    gidNumber: 1000
+    cn: emanuel
+    sn: Emanuel Oliveira
+    displayName: Emanuel Oliveira
+    userPassword: Password123
+    homeDirectory: /home/emanuel
+    mail: emanuel.oliveira@sas.com
+
+    dn: uid=sas.geography,ou=people,dc=viya,dc=domain
+    changetype: add
+    objectClass: inetOrgPerson
+    objectClass: extensibleObject
+    uid: sas.geography
+    uidNumber: 7003
+    gidNumber: 1000
+    cn: SAS Geography User
+    sn: Geography
+    userPassword: Password123
+    homeDirectory: /home/sas.geography
+    
+    dn: uid=willian,ou=people,dc=viya,dc=domain
+    changetype: add
+    objectClass: inetOrgPerson
+    objectclass: extensibleObject
+    uid: user2
+    uidNumber: 7002
+    gidNumber: 1000
+    cn: willian
+    sn: Willian Rosa
+    displayName: Willian Rosa
+    userPassword: Password123
+    homeDirectory: /home/willian
+    mail: willian.rosa@sas.com
+
+    dn: cn=users,ou=groups,dc=viya,dc=domain
+    changetype: add
+    objectclass: groupofUniqueNames
+    objectclass: extensibleObject
+    gidNumber: 1000
+    uniqueMember:uid=emanuel,ou=people,dc=viya,dc=domain
+    uniqueMember:uid=willian,ou=people,dc=viya,dc=domain
+    
+    dn: cn=admins,ou=groups,dc=viya,dc=domain
+    changetype: add
+    objectclass: groupofUniqueNames
+    objectclass: extensibleObject
+    gidNumber: 2000
+    uniqueMember:uid=viya,ou=people,dc=viya,dc=domain
+  - |-
+    LDAP_GROUPS_CONF=dn: ou=people,dc=viya,dc=domain
+    changetype: add
+    objectClass: organizationalUnit
+    ou: people
+    
+    dn: ou=groups,dc=viya,dc=domain
+    changetype: add
+    objectclass: organizationalunit
+    ou: groups
+    description: All organizational groups

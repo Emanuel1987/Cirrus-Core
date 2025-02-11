@@ -1,0 +1,79 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-core-parameter-transform
+patch: |-
+
+  #Cirrus deployer environment variables
+  - op: replace
+    path: /data/SAS_LOG_LEVEL_RISKCIRRUSDEPLOYER
+    value: "INFO"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_DEPLOYER_SKIP_SPECIFIC_INSTALL_STEPS
+    value: ""
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_DEPLOYER_RUN_SPECIFIC_INSTALL_STEPS
+    value: ""
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_SET_WORKFLOW_SERVICE_ACCOUNT_FLG
+    value: "Y"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_WORKFLOW_DEFAULT_SERVICE_ACCOUNT
+    value: ""
+
+  #Cirrus code library environment variables
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_GIT_SETUP_NEEDED
+    value: "Y"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_REPO_NAME
+    value: "Cirrus-Core"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_REPO_USER
+    value: "emanuel"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_REPO_EMAIL
+    value: "emanuel.oliveira@sas.com"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_GIT_REPO_FULL_URL
+    value: "https://github.com/Emanuel1987/Cirrus-Core"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_GIT_REPO_TYPE
+    value: "github"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_APPEND_NAMESPACE_TO_BRANCH_FLG
+    value: "N"
+
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_SKIP_PUSH_IF_BRANCH_EXISTS
+    value: "N"
+
+target:
+  kind: ConfigMap
+  name: sas-risk-cirrus-core-parameters*
+
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-core-secret-transform
+patch: |-
+
+  #Cirrus code library secrets
+  - op: replace
+    path: /data/SAS_RISK_CIRRUS_CODE_LIB_REPO_TOKEN
+    value: "Z2hwX096MVNTdkd6TTBDNVJVYzdGVUtiOW12emF2em1YVjAzVjZGbg=="
+
+target:
+  kind: Secret
+  name: sas-risk-cirrus-core-secret*
